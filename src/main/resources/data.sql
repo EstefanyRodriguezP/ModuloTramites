@@ -1,0 +1,1 @@
+-- Puedo crear un archivo data.sql o schema.sql para que jpa lo inicialice en conjunto con la aplicación
