@@ -21,12 +21,12 @@ public class Usuario {
 
     private String nombre;
 
-    private String apellido;
+    /*private String apellido;
 
     @Column(nullable = false, unique = true)//Restricciones para la columna, no permitir null y sólo registros únicos
     private String email;
 
     @Column(nullable = false)
-    private String password;
+    private String password;*/
 
 }

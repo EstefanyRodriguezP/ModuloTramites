@@ -1,23 +1,19 @@
 package generation.rencapp.models;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.util.List;
 
 @Entity
-@Table(name = "tramites")
+@Table(name = "solicitudes")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class Tramite {
+public class Solicitud {
 
     /*solicitudes van dentro de los tramites
     -> Usuario conectado a Solicitud, solicitud conectado al Tramite
@@ -29,52 +25,38 @@ public class Tramite {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(nullable = false)
-    private String nombre;
-
-    private Boolean agendamiento;
-
-    private Boolean pagoAsociado;
-
-    private Boolean terminosYCondiciones;
-
-    private Boolean cargaDeArchivo;
-
     @CreationTimestamp
     private LocalDateTime createdAt;
 
     @UpdateTimestamp
     private LocalDateTime updatedAt;
 
-    /*@Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private EstadoTramite estado;
+    private EstadoSolicitud estado;
 
-    public enum EstadoTramite {
+    public enum EstadoSolicitud {
         PENDIENTE,
         EVALUADO,
         PAGADO,
         FINALIZADO
-    }*/
-
-
-    /*// REVISAR SI FECHA Y HORA CORRESPONDE O ES NECESARIO CREAR RELACIÓN CON TABLA DE AGENDAMIENTO
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-    private LocalDate fecha;
-
-    @JsonFormat(pattern = "HH:mm")
-    private LocalTime horaInicio;*/
+    }
 
 
     // RELACIONES FOREIGN KEY
     @JsonIgnore//Ignorar en la respuesta JSON este campo
     @ManyToOne//Many to one permite crear una relación de uno a muchos (1 a n)
-    @JoinColumn(name = "servicio_id")
-    private Servicio servicio;
+    @JoinColumn(name = "vecino_id")
+    @Column(nullable = false)
+    private Vecino vecino;
 
-    @OneToMany(mappedBy = "solicitud", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Solicitud> solicitudes;
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "tramite_id")
+    private Tramite tramite;
 
+
+    // FALTA RELACION CON AGENDAMIENTO Y CARGA DE DOCUMENTOS
 
 
 }

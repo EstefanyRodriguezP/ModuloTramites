@@ -1,11 +1,7 @@
 package generation.rencapp.repositories;
-
 import generation.rencapp.models.Tramite;
-import generation.rencapp.models.Vecino;
-import jdk.dynalink.linker.LinkerServices;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-
 import java.time.LocalDate;
 import java.util.List;
 
@@ -16,14 +12,13 @@ public interface TramiteRepository extends JpaRepository<Tramite, Long> {
     //Los repositorios son interfaces porque sólo definen métodos
     /**La clase JpaRepository, contiene metodos para hacer el CRUD**/
 
-    List<Tramite> findByVecinoId(Vecino vecino);
+    // Metodo para buscar trámite por id
+    Tramite findById(long id);
 
-    List<Tramite> findByNombreTramite(String nombre);
+    List<Tramite> findByNombre(String nombre);
 
-    List<Tramite> findByEstadoTramite(String estado);
+    List<Tramite> findByServicioId(Long servicioId);
 
-    //List<Tramite> findByServicioId(Servicio servicio);
-
-    //List<Tramite> findByFecha(LocalDate fecha);
+    List<Tramite> findByFechaCreacion(LocalDate fecha);
 
 }
