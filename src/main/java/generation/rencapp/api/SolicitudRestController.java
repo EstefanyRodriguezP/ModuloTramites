@@ -30,8 +30,9 @@ public class SolicitudRestController {
     }
 
     /** OBTENER SOLICITUDES POR ESTADO **/
-    @GetMapping("/{estado}")
-    public ResponseEntity<?> findSolicitudByEstado(@RequestParam String estado) {
+    @GetMapping("/estado")
+    public ResponseEntity<?> findSolicitudByEstado(@RequestParam Solicitud.EstadoSolicitud estado) {
+
         return new ResponseEntity<>(solicitudServiceImpl.findByEstado(estado), HttpStatus.OK);
     }
     //RequestParam = localhost/api/solicitudes?estado=PENDIENTE
@@ -41,21 +42,19 @@ public class SolicitudRestController {
     //PUT es el metodo HTTP para trabajar con edición
     //ID de la solicitud va a ser la variable o criterio de búsqueda de la solicitud a editar
     //Va a recibir un objeto de tipo Solicitud con los campos editados
-    @PutMapping("/editarTramite/{id}")
+    @PutMapping("/editarSolicitud/{id}")
     public ResponseEntity<Solicitud> updateSolicitudById(@PathVariable Long id,
                                                      @RequestBody Solicitud solicitudEditada) {
         //Buscamos primero, la solicitud por ID
         Solicitud solicitudSeleccionada = solicitudServiceImpl.findById(id);
         //A la solicitudEditada que viene en el cuerpo de la petición, le seteamos el ID de nuestra solicitudSeleccionada
         solicitudEditada.setId(solicitudSeleccionada.getId());
-        //A la solicitudEditada le seteamos el estado de la solicitudSeleccionada
-        solicitudEditada.setEstado(solicitudSeleccionada.getEstado());
         //Retornamos una nueva ResponseEntity pasando como argumento el metodo de guardar solicitud
         return new ResponseEntity<>(solicitudServiceImpl.saveSolicitud(solicitudEditada), HttpStatus.OK);
     }
 
     /** CREAR NUEVA SOLICITUD PARA TRÁMITE CON EL ID DE TRÁMITE **/
-    @PostMapping("/nuevo/{servicioId}")
+    @PostMapping("/nuevo/{tramiteId}")
     public ResponseEntity<?> saveSolicitudNueva(@RequestBody Solicitud solicitudNueva,
                                                 @PathVariable Long tramiteId) {
         // Buscamos el trámite por su id y lo guardamos en una variable

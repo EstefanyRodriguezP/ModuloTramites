@@ -16,12 +16,9 @@ public class SolicitudServiceImpl implements SolicitudService {
     @Autowired
     private SolicitudRepository solicitudRepository;
 
-    @Autowired
-    private SolicitudServiceImpl solicitudServiceImpl;
-
     // Metodo para buscar solicitudes por el estado
-    public List<Solicitud> findByEstado(String estado) {
-        return solicitudServiceImpl.findByEstado(estado);
+    public List<Solicitud> findByEstado( Solicitud.EstadoSolicitud estado) {
+        return solicitudRepository.findAllByEstado(estado);
     }
 
     // Metodo para buscar solicitudes por id
@@ -54,7 +51,7 @@ public class SolicitudServiceImpl implements SolicitudService {
     @Override
     public List<Solicitud> findByFechaCreacion(LocalDate fecha) {
         if (fecha != null) {
-            return solicitudRepository.findByFechaCreacion(fecha);
+            return solicitudRepository.findByCreatedAt(fecha);
         }
         return new ArrayList<>(); // Retorna una lista vacía si el servicio es null
     }

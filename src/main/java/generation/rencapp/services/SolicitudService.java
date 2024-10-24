@@ -25,7 +25,7 @@ public interface SolicitudService {
     List<Solicitud> findByVecinoId(Vecino vecino);
 
     // Metodo para buscar solicitudes por estado
-    List<Solicitud> findByEstado(String estado);
+    List<Solicitud> findByEstado(Solicitud.EstadoSolicitud estado);
 
     // Metodo para encontrar solicitud por tramiteId
     List<Solicitud> findByTramiteId(Tramite tramite);

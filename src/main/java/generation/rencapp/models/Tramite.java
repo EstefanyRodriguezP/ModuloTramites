@@ -72,7 +72,7 @@ public class Tramite {
     @JoinColumn(name = "servicio_id")
     private Servicio servicio;
 
-    @OneToMany(mappedBy = "solicitud", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "tramite", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Solicitud> solicitudes;
 
 

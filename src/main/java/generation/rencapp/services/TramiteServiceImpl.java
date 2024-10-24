@@ -50,7 +50,7 @@ public class TramiteServiceImpl implements TramiteService {
     @Override
     public List<Tramite> findByFechaCreacion(LocalDate fecha) {
         if (fecha != null) {
-            return tramiteRepository.findByFechaCreacion(fecha);
+            return tramiteRepository.findByCreatedAt(fecha);
         }
         return new ArrayList<>(); // Retorna una lista vacía si el servicio es null
     }

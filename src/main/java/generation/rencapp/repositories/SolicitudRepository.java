@@ -17,12 +17,12 @@ public interface SolicitudRepository extends JpaRepository<Solicitud, Long> {
     Solicitud findById(long id);
 
     // Metodo para buscar solicitud por nombre
-    List<Solicitud> findByNombre(String nombre);
+    List<Solicitud> findAllByEstado(Solicitud.EstadoSolicitud estado);
 
     // Metodo para buscar solicitud por tramiteId
     List<Solicitud> findByTramiteId(Long tramiteId);
 
     // Metodo para buscar solicitud por fechaCreación
-    List<Solicitud> findByFechaCreacion(LocalDate fecha);
+    List<Solicitud> findByCreatedAt(LocalDate fecha);
 
 }

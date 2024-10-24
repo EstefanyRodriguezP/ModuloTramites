@@ -47,7 +47,6 @@ public class Solicitud {
     @JsonIgnore//Ignorar en la respuesta JSON este campo
     @ManyToOne//Many to one permite crear una relación de uno a muchos (1 a n)
     @JoinColumn(name = "vecino_id")
-    @Column(nullable = false)
     private Vecino vecino;
 
     @JsonIgnore

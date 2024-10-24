@@ -19,6 +19,6 @@ public interface TramiteRepository extends JpaRepository<Tramite, Long> {
 
     List<Tramite> findByServicioId(Long servicioId);
 
-    List<Tramite> findByFechaCreacion(LocalDate fecha);
+    List<Tramite> findByCreatedAt(LocalDate fecha);
 
 }
